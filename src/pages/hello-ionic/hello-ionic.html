@@ -22,4 +22,8 @@
     <button ion-button color="primary" menuToggle>Toggle Menu</button>
   </p>
 
+  <ion-list *ngFor="let userMetal of usersMetal">
+    <ion-item>{{userMetal.name}} - {{userMetal.favorite_band}}</ion-item>
+  </ion-list>
+
 </ion-content>
