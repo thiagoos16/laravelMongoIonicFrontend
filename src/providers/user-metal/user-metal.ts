@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class UserMetalProvider {
 
-  public urlUserMetal = "http://localhost:80000/user" 
+  public urlUserMetal = "http://localhost:8000/user" 
   
   constructor(public http: HttpClient) {
     console.log('Hello UserMetalProvider Provider');
