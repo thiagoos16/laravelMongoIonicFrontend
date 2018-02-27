@@ -10,7 +10,7 @@ import { UserMetalProvider } from '../../providers/user-metal/user-metal';
 export class HelloIonicPage {
   public usersMetal = [];
 
-  public userMetalCadastro = {"name":"", "favorite_band":null};
+  public userMetalCadastro = {"id":"","name":"", "favorite_band":null};
 
   constructor(private userMetalService:UserMetalProvider) {
     this.getUserMetal();
@@ -21,6 +21,14 @@ export class HelloIonicPage {
   }
 
   public postUserMetal() {
-    this.userMetalService.save(this.userMetalCadastro).subscribe(response => this.getUserMetal());
+    if (this.userMetalCadastro.id == "") {
+      this.userMetalService.save(this.userMetalCadastro).subscribe(response => this.getUserMetal());
+    } else {
+      this.userMetalService.put(this.userMetalCadastro).subscribe(response => this.getUserMetal()); 
+    }
+  }
+
+  public inputForm(userMetal) {
+    this.userMetalCadastro = userMetal; 
   }
 }
