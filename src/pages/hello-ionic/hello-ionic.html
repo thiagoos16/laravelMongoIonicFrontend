@@ -8,14 +8,14 @@
 </ion-header>
 
 <ion-content padding>
-  <form (ngSubmit)="logForm()">
+  <form (ngSubmit)="postUserMetal()">
     <ion-item>
       <ion-label>Nome</ion-label>
-      <ion-input type="text" [(ngModel)]="userMetalCadastro.name" name="nome"></ion-input>
+      <ion-input type="text" [(ngModel)]="userMetalCadastro.name" name="name"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Banda Favorita</ion-label>
-      <ion-textarea [(ngModel)]="userMetalCadastro.favorite_band" name="favorite_band"></ion-textarea>
+      <ion-input [(ngModel)]="userMetalCadastro.favorite_band" name="favorite_band"></ion-input>
     </ion-item>
     <button ion-button type="submit" block>Salvar</button>
   </form>

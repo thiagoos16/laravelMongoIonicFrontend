@@ -21,4 +21,7 @@ export class UserMetalProvider {
     return this.http.get(this.urlUserMetal);
   }
 
+  public save(userMetal):Observable<any> {
+    return this.http.post(this.urlUserMetal, userMetal);
+  }
 }
