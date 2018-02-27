@@ -24,4 +24,12 @@ export class UserMetalProvider {
   public save(userMetal):Observable<any> {
     return this.http.post(this.urlUserMetal, userMetal);
   }
+
+  public put(userMetal):Observable<any> {
+    return this.http.put(this.urlUserMetal + "/" + userMetal.id, userMetal);
+  }
+
+  public delete(id):Observable<any>{
+    return this.http.delete(this.urlUserMetal + "/" + id);
+  }
 }
