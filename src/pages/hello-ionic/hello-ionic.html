@@ -7,23 +7,20 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-
-  <h3>Welcome to your first Ionic app!</h3>
-
-  <p>
-    This starter project is our way of helping you get a functional app running in record time.
-  </p>
-  <p>
-    Follow along on the tutorial section of the Ionic docs!
-  </p>
-  <p>
-    <button ion-button color="primary" menuToggle>Toggle Menu</button>
-  </p>
+  <form (ngSubmit)="logForm()">
+    <ion-item>
+      <ion-label>Nome</ion-label>
+      <ion-input type="text" [(ngModel)]="userMetalCadastro.name" name="nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Banda Favorita</ion-label>
+      <ion-textarea [(ngModel)]="userMetalCadastro.favorite_band" name="favorite_band"></ion-textarea>
+    </ion-item>
+    <button ion-button type="submit" block>Salvar</button>
+  </form>
 
   <ion-list *ngFor="let userMetal of usersMetal">
     <ion-item>{{userMetal.name}} - {{userMetal.favorite_band}}</ion-item>
   </ion-list>
-
 </ion-content>
