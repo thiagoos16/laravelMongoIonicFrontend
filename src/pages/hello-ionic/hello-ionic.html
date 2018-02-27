@@ -23,6 +23,7 @@
   <ion-list *ngFor="let userMetal of usersMetal">
     <ion-item>{{userMetal.name}} - {{userMetal.favorite_band}} 
       <button ion-button color="light" (click)="inputForm(userMetal)">Editar</button>
+      <button ion-button color="danger" (click)="delete(userMetal.id)">Deletar</button>
     </ion-item>
   </ion-list>
 </ion-content>

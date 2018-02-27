@@ -31,4 +31,8 @@ export class HelloIonicPage {
   public inputForm(userMetal) {
     this.userMetalCadastro = userMetal; 
   }
+
+  public delete(id) {
+    this.userMetalService.delete(id).subscribe(response => this.getUserMetal());
+  }
 }
