@@ -11,6 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { UserMetalProvider } from '../providers/user-metal/user-metal';
 import { HttpClientModule } from '@angular/common/http';
+import { PerfilProvider } from '../providers/perfil/perfil';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { HttpClientModule } from '@angular/common/http';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserMetalProvider,
-    UserMetalProvider
+    UserMetalProvider,
+    PerfilProvider
   ]
 })
 export class AppModule {}
