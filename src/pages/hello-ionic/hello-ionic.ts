@@ -2,20 +2,22 @@ import { Component } from '@angular/core';
 import { UserMetalProvider } from '../../providers/user-metal/user-metal';
 import { PerfilProvider } from '../../providers/perfil/perfil';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @Component({
   selector: 'page-hello-ionic',
   templateUrl: 'hello-ionic.html',
-  providers: [UserMetalProvider, PerfilProvider, Camera]
+  providers: [UserMetalProvider, PerfilProvider, Camera, Geolocation]
 })
 
 export class HelloIonicPage {
   public usersMetal = [];
   public perfis = [];
 
-  public userMetalCadastro = {"id":"","name":"", "favorite_band":null , "perfil_id":"",  "foto":""};
+  public userMetalCadastro = {"id":"","name":"", "favorite_band":null , "perfil_id":"",  "foto":"", "long":0, "lat":0};
 
-  constructor(private userMetalService:UserMetalProvider, private perfilService:PerfilProvider, private camera:Camera) {
+  constructor(private userMetalService:UserMetalProvider, private perfilService:PerfilProvider, 
+              private camera:Camera, private geolocation:Geolocation) {
     this.getUserMetal();
     this.getPerfis();
   }
@@ -25,11 +27,19 @@ export class HelloIonicPage {
   }
 
   public postUserMetal() {
-    if (this.userMetalCadastro.id == "") {
-      this.userMetalService.save(this.userMetalCadastro).subscribe(response => this.getUserMetal());
-    } else {
-      this.userMetalService.put(this.userMetalCadastro).subscribe(response => this.getUserMetal()); 
-    }
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.userMetalCadastro.lat = resp.coords.latitude;
+      this.userMetalCadastro.long = resp.coords.longitude
+    
+      if (this.userMetalCadastro.id == "") {
+        this.userMetalService.save(this.userMetalCadastro).subscribe(response => this.getUserMetal());
+      } else {
+        this.userMetalService.put(this.userMetalCadastro).subscribe(response => this.getUserMetal()); 
+      }
+
+    }).catch((error) => {
+       console.log('Error getting location', error);
+    });
   }
 
   public inputForm(userMetal) {
@@ -60,7 +70,6 @@ export class HelloIonicPage {
      // imageData is either a base64 encoded string or a file URI
      // If it's base64:
      let base64Image = 'data:image/jpeg;base64,' + imageData;
-     console.log(base64Image);
      this.userMetalCadastro.foto = base64Image;
     }, (err) => {
      // Handle error
