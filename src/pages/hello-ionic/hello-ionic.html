@@ -17,15 +17,13 @@
       <ion-label>Banda Favorita</ion-label>
       <ion-input [(ngModel)]="userMetalCadastro.favorite_band" name="favorite_band"></ion-input>
     </ion-item>
-    <button ion-button type="submit" block>Salvar</button>
     <ion-item>
       <ion-label>Perfil</ion-label>
-      <ion-select [(ngModel)]="userMetalCadastro.perfil_name" [compareWith]="compareFn" name="perfil_name">
-          <ion-list *ngFor="let perfis of perfil" [value]="perfil">
-              <ion-option value="perfil.id">{{perfil.name}}</ion-option>
-          </ion-list>
+      <ion-select [(ngModel)]="userMetalCadastro.perfil_id" [compareWith]="compareFn" name="perfil_name">
+          <ion-option *ngFor="let perfil of perfis" [value]="perfil.id"> {{perfil.name}} </ion-option>
       </ion-select>
     </ion-item>
+    <button ion-button type="submit" block>Salvar</button>
   </form>
 
   <ion-list *ngFor="let userMetal of usersMetal">
