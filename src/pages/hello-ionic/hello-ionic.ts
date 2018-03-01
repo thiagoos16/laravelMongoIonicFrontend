@@ -13,7 +13,7 @@ export class HelloIonicPage {
   public usersMetal = [];
   public perfis = [];
 
-  public userMetalCadastro = {"id":"","name":"", "favorite_band":null , "perfil_id":""};
+  public userMetalCadastro = {"id":"","name":"", "favorite_band":null , "perfil_id":"",  "foto":""};
 
   constructor(private userMetalService:UserMetalProvider, private perfilService:PerfilProvider, private camera:Camera) {
     this.getUserMetal();
@@ -61,6 +61,7 @@ export class HelloIonicPage {
      // If it's base64:
      let base64Image = 'data:image/jpeg;base64,' + imageData;
      console.log(base64Image);
+     this.userMetalCadastro.foto = base64Image;
     }, (err) => {
      // Handle error
     });

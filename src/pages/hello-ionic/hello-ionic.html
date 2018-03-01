@@ -23,11 +23,15 @@
           <ion-option *ngFor="let perfil of perfis" [value]="perfil.id"> {{perfil.name}} </ion-option>
       </ion-select>
     </ion-item>
+    <ion-item (click)="capturarFoto()">
+        <ion-icon name="camera"></ion-icon>
+          Foto
+    </ion-item>
     <button ion-button type="submit" block>Salvar</button>
   </form>
 
   <ion-list *ngFor="let userMetal of usersMetal">
-    <ion-item>{{userMetal.name}} - {{userMetal.favorite_band}} - {{userMetal.perfil_name}}
+    <ion-item>{{userMetal.name}} - {{userMetal.favorite_band}} - {{userMetal.perfil_name}} - <img width="40px" [src]="userMetal.foto">
       <button ion-button color="light" (click)="inputForm(userMetal)">Editar</button>
       <button ion-button color="danger" (click)="delete(userMetal.id)">Deletar</button>
     </ion-item>
